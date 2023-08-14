@@ -10,10 +10,10 @@ def guess_random_number(tries: int, start: int, stop: int):
         if guess == target:
             print("You guessed the correct number!")
             return
-        elif guess < target and tries > 0:
+        elif guess < target:
             print("Guess higher!")
-            tries -= 15
-        elif guess > target and tries > 0:
+            tries -= 1
+        elif guess > target:
             print("Guess lower!")
             tries -= 1
         else:
@@ -21,7 +21,7 @@ def guess_random_number(tries: int, start: int, stop: int):
             break
     
 
-# guess_random_number(5, 0, 10)
+guess_random_number(5, 0, 10)
 
 # TASK 2: The computer will generate a random number, then the computer will try to guess it using linear search.
 
@@ -67,4 +67,4 @@ def guess_random_num_binary(tries: int, start: int, stop: int):
         
     print("Your program failed to find the number.")
 
-guess_random_num_binary(5, 0, 100)
+# guess_random_num_binary(5, 0, 100)
