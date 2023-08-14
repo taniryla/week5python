@@ -42,5 +42,29 @@ def guess_random_num_linear(tries: int, start: int, stop: int):
     
 
 
-guess_random_num_linear(5, 0, 10)
+# guess_random_num_linear(5, 0, 10)
 # TASK 3: The computer will generate a random number, then the computer will try to guess it using binary search.
+
+def guess_random_num_binary(tries: int, start: int, stop: int):
+    target = random.randint(start, stop)
+    print(f"Random number to find: {target}")
+    # find lower (start) and upper (stop) bound
+    while tries > 0 and start <= stop:
+    # find the pivot
+        pivot = (stop + start) // 2
+    # compare lower bound with pivot and find new pivot 
+        if target == pivot:
+            print(f"Found it! {target}")
+            return pivot
+        elif pivot > target:
+            print("Guessing lower!")
+            tries -= 1
+            stop = pivot - 1
+        elif pivot < target:
+            print("Guessing higher!")
+            tries -= 1
+            start = pivot + 1
+        
+    print("Your program failed to find the number.")
+
+guess_random_num_binary(5, 0, 100)
