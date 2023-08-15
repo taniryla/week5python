@@ -87,18 +87,16 @@ class Deck:
         for c in self.cards:
             c.show()
 
-deck = Deck()
-deck.show()
 
 #   4.3) Get a new Shuffled deck from the random import
     
-def getNewShuffledDeck(deck):
-    random.shuffle(deck)
-    """
-    if len(deck) >= 26:
-        player_cards.append()
-        print(player_cards)
-    else:
-        computer_cards.append()
-        print(player_cards)
-    """
+    def shuffle(self):
+        # when we run the loop, we want values 51-1 (length of array minus)
+        for i in range(len(self.cards) - 1, 0, -1):
+            # create a random number from 0 to i (which is left of our current position as we're going right to left)
+            ran = random.randint(0, i)
+            self.cards[i], self.cards[ran] = self.cards[ran], self.cards[i]
+
+deck = Deck()
+deck.shuffle()
+deck.show()
