@@ -6,7 +6,7 @@ import random
 
 suits = ['s', 'c', 'd', 'h'];
 ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
-masterDeck = buildMasterDeck();
+# masterDeck = buildMasterDeck();
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
@@ -56,24 +56,29 @@ def startGame():
 #   4.1.3) Create a variable for winner
     winner = None
 #   4.1.4) Store shuffled deck in a variable
-    shuffled_deck = getNewShuffledDeck(deck)
+    # shuffled_deck = getNewShuffledDeck(deck)
 #   4.1.5) 
 
 
-#	4.2) Get a new Shuffled deck from the random import.
+#	4.2) Build a class for card and deck 
+
+class Card:
+    def __init__(self):
+        pass
+
+class Deck:
+    def __init__(self):
+        pass
+    
+#   4.3) Get a new Shuffled deck from the random import
+    
 def getNewShuffledDeck(deck):
     random.shuffle(deck)
+    """
     if len(deck) >= 26:
         player_cards.append()
         print(player_cards)
     else:
         computer_cards.append()
         print(player_cards)
-
-#   4.3) Build a Master deck
-    deck = []
-    for s in suits:
-        for r in ranks:
-            deck.append(
-                face: {s}{r}
-            )
+    """
