@@ -6,18 +6,17 @@ import random
 
 suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts'];
 ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
-# masterDeck = buildMasterDeck();
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
-#	3.1) player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards.  
-
-
+  
 # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 # 3.3) If Player and Computer turn up the same card, then invoke a war() function
-
-# The player with the higher card takes all six cards
-# If player turns up the same again, repeat the war() function with one card face up and one card face down.
+def war():
+    pass
+    # The player with the higher card takes all six cards
+    
+    # If player turns up the same again, repeat the war() function with one card face up and one card face down.
 
 # 3.3) The value of cards
 #		3.3.1) J counts as 11 points
@@ -30,24 +29,26 @@ ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A
 # 3.4) The winner is the player who wins all of the cards
 
 
-# /*----- functions -----*/
-# init()
-
 # /*----- app's state (variables) -----*/
 	
 # 2) Define required variables used to track the state of the game:
-# 2.1) Create an init function
-def init():
+
+
+
+# 2.1) 
 #	2.2) Create an empty array of player_cards = [ ]	
-    player_cards = []
+player_cards = []
 # 2.3) Create an empty array of computer_cards = [ ]
-    computer_cards = []
+computer_cards = []
 # 2.4) Each player turns one card face up and one card face down
-    warPlayerDeck = []
-    warComputerDeck = []
+warPlayerDeck = []
+warComputerDeck = []
+
+
+# /*----- functions -----*/
 
 # 4) Upon loading the app should:
-def startGame():
+def start_game():
 #	4.1) Initialize the state variables:
 #   4.1.1) Create a variable of faceUpPlayerCard 
     faceUpPlayerCard = None
@@ -55,9 +56,25 @@ def startGame():
     faceUpComputerCard = None
 #   4.1.3) Create a variable for winner
     winner = None
-#   4.1.4) Store shuffled deck in a variable
-    # shuffled_deck = getNewShuffledDeck(deck)
-#   4.1.5) 
+#   4.1.4) Create a new deck and then shuffle and show it
+    deck = Deck()
+    deck.shuffle()
+    deck.show()
+#   4.1.5) Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
+    pcards = deck.draw_card()
+    player_cards = pcards[0:26:]
+    ccards = deck.draw_card()
+    computer_cards = ccards[26:52:]
+    print(f"Player cards... {player_cards}")
+    print(f"Computer cards... {computer_cards}")
+
+#   4.1.6) Pull out the card on the deck for the Player
+    faceUpPlayerCard = player_cards.pop()
+    print("Player card...")
+    faceUpPlayerCard.show()
+    faceUpComputerCard = computer_cards.pop()
+    print("Computer card...")
+    faceUpComputerCard.show()
 
 
 #	4.2) Build a class for card and deck 
@@ -69,9 +86,6 @@ class Card:
     
     def show(self):
         print("{} of {}".format(self.value, self.suit))
-
-# card = Card("Card", 7)
-# card.show()
 
 class Deck:
     def __init__(self):
@@ -97,6 +111,9 @@ class Deck:
             ran = random.randint(0, i)
             self.cards[i], self.cards[ran] = self.cards[ran], self.cards[i]
 
-deck = Deck()
-deck.shuffle()
-deck.show()
+#   4.4) Create a Draw Card method
+    def draw_card(self):
+        return self.cards.pop() # will remove the last card from the top of the deck and return that card
+
+
+start_game()
