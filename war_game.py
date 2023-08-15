@@ -36,9 +36,9 @@ def war():
 
 
 # 2.1) 
-#	2.2) Create an empty array of player_cards = [ ]	
+#	2.2) Create an empty array of player_cards	
 player_cards = []
-# 2.3) Create an empty array of computer_cards = [ ]
+# 2.3) Create an empty array of computer_cards 
 computer_cards = []
 # 2.4) Each player turns one card face up and one card face down
 warPlayerDeck = []
@@ -61,20 +61,21 @@ def start_game():
     deck.shuffle()
     deck.show()
 #   4.1.5) Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
-    pcards = deck.draw_card()
-    player_cards = pcards[0:26:]
-    ccards = deck.draw_card()
-    computer_cards = ccards[26:52:]
-    print(f"Player cards... {player_cards}")
-    print(f"Computer cards... {computer_cards}")
-
 #   4.1.6) Pull out the card on the deck for the Player
-    faceUpPlayerCard = player_cards.pop()
-    print("Player card...")
-    faceUpPlayerCard.show()
-    faceUpComputerCard = computer_cards.pop()
-    print("Computer card...")
-    faceUpComputerCard.show()
+    """
+    while deck != None:
+        faceUpPlayerCard = deck.draw_card()
+        player_cards.append(faceUpPlayerCard)
+        print("Player card...")
+        faceUpPlayerCard.show()
+        faceUpComputerCard = deck.draw_card()
+        computer_cards.append(faceUpComputerCard)
+        print("Computer card...")
+        faceUpComputerCard.show()
+        print(f"Player cards... {player_cards}")
+        print(f"Computer cards... {computer_cards}")
+    """
+
 
 
 #	4.2) Build a class for card and deck 
