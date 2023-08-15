@@ -4,17 +4,9 @@ import random
 
 # 1) Define required constants:
 
-deck = ['02s', '03s', '04s', '05s', '06s', '07s', '08s', '09s', '10s', 'Js', 'Qs', 'Ks', 'As', '02c', '03c', '04c', '05c', '06c', '07c', '08c', '09c', '10c', 'Jc', 'Qc', 'Kc', 'Ac', '02d', '03d', '04d', '05d', '06d', '07d', '08d', '09d', '10d', 'Jd', 'Qd', 'Kd', 'Ad','02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', 'Jh', 'Qh', 'Kh', 'Ah']
-
-# /*----- app's state (variables) -----*/
-	
-# 2) Define required variables used to track the state of the game:
-# 2.1) Declare a Shuffle deck variable “shuffleDeck”
-#	2.2) Create an empty array of player_cards = [ ]	
-player_cards = []
-# 2.3) Create an empty array of computer_cards = [ ]
-computer_cards = []
- 
+suits = ['s', 'c', 'd', 'h'];
+ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+masterDeck = buildMasterDeck();
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
@@ -23,9 +15,7 @@ computer_cards = []
 
 # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 # 3.3) If Player and Computer turn up the same card, then invoke a war() function
-# Each player turns one card face up and one card face down
-warPlayerDeck = []
-warComputerDeck = []
+
 # The player with the higher card takes all six cards
 # If player turns up the same again, repeat the war() function with one card face up and one card face down.
 
@@ -42,10 +32,22 @@ warComputerDeck = []
 
 # /*----- functions -----*/
 # init()
-# def init ():
+
+# /*----- app's state (variables) -----*/
+	
+# 2) Define required variables used to track the state of the game:
+# 2.1) Create an init function
+def init():
+#	2.2) Create an empty array of player_cards = [ ]	
+    player_cards = []
+# 2.3) Create an empty array of computer_cards = [ ]
+    computer_cards = []
+# 2.4) Each player turns one card face up and one card face down
+    warPlayerDeck = []
+    warComputerDeck = []
 
 # 4) Upon loading the app should:
-def getNewShuffledDeck(deck):
+def startGame():
 #	4.1) Initialize the state variables:
 #   4.1.1) Create a variable of faceUpPlayerCard 
     faceUpPlayerCard = None
@@ -53,10 +55,25 @@ def getNewShuffledDeck(deck):
     faceUpComputerCard = None
 #   4.1.3) Create a variable for winner
     winner = None
+#   4.1.4) Store shuffled deck in a variable
+    shuffled_deck = getNewShuffledDeck(deck)
+#   4.1.5) 
+
+
 #	4.2) Get a new Shuffled deck from the random import.
+def getNewShuffledDeck(deck):
     random.shuffle(deck)
-    while len(deck) <= 26:
-        player_cards.append(shuffled_deck)
+    if len(deck) >= 26:
+        player_cards.append()
         print(player_cards)
-    computer_cards.append(shuffled_deck)
-    print(player_cards)
+    else:
+        computer_cards.append()
+        print(player_cards)
+
+#   4.3) Build a Master deck
+    deck = []
+    for s in suits:
+        for r in ranks:
+            deck.append(
+                face: {s}{r}
+            )
