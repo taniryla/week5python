@@ -4,7 +4,7 @@ import random
 
 # 1) Define required constants:
 
-suits = ['s', 'c', 'd', 'h'];
+suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts'];
 ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 # masterDeck = buildMasterDeck();
 
@@ -63,13 +63,33 @@ def startGame():
 #	4.2) Build a class for card and deck 
 
 class Card:
-    def __init__(self):
-        pass
+    def __init__(self, suit, val):
+        self.suit = suit
+        self.value = val
+    
+    def show(self):
+        print("{} of {}".format(self.value, self.suit))
+
+# card = Card("Card", 7)
+# card.show()
 
 class Deck:
     def __init__(self):
-        pass
+        self.cards = []
+        self.build()
     
+    def build(self):
+        for s in suits:
+            for r in ranks:
+                self.cards.append(Card(s, r))
+    
+    def show(self):
+        for c in self.cards:
+            c.show()
+
+deck = Deck()
+deck.show()
+
 #   4.3) Get a new Shuffled deck from the random import
     
 def getNewShuffledDeck(deck):
