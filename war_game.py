@@ -1,23 +1,26 @@
+import random
 
 # /*----- constants -----*/
 
-#v 1) Define required constants:
+# 1) Define required constants:
 
-suits = ['s', 'c', 'd', 'h']
-ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A']
+deck = ['02s', '03s', '04s', '05s', '06s', '07s', '08s', '09s', '10s', 'Js', 'Qs', 'Ks', 'As', '02c', '03c', '04c', '05c', '06c', '07c', '08c', '09c', '10c', 'Jc', 'Qc', 'Kc', 'Ac', '02d', '03d', '04d', '05d', '06d', '07d', '08d', '09d', '10d', 'Jd', 'Qd', 'Kd', 'Ad','02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', 'Jh', 'Qh', 'Kh', 'Ah']
 
 # /*----- app's state (variables) -----*/
 	
 # 2) Define required variables used to track the state of the game:
 # 2.1) Declare a Shuffle deck variable “shuffleDeck”
-#	2.2) Create an empty array of playerCards = [ ]	
-# 2.3) Create an empty array of computerCards = [ ]
-# 2.4) Create a variable of faceUpPlayerCard 
-# 2.5) Create a variable of faceUpComputerCard 
+#	2.2) Create an empty array of player_cards = [ ]	
+player_cards = []
+# 2.3) Create an empty array of computer_cards = [ ]
+computer_cards = []
+ 
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
-#	3.1) playerCards receives 26 random cards out of a 52 card deck. computerCards receives 26 random cards.  
+#	3.1) player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards.  
+
+
 # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 # 3.3) If Player and Computer turn up the same card, then invoke a war() function
 # Each player turns one card face up and one card face down
@@ -38,11 +41,22 @@ warComputerDeck = []
 
 
 # /*----- functions -----*/
-init()
-def init ():
+# init()
+# def init ():
 
 # 4) Upon loading the app should:
+def getNewShuffledDeck(deck):
 #	4.1) Initialize the state variables:
-#		4.1.1) Get a new Shuffled deck.
-def getNewShuffledDeck():
-    print("Placeholder")
+#   4.1.1) Create a variable of faceUpPlayerCard 
+    faceUpPlayerCard = None
+#   4.1.2) Create a variable of faceUpComputerCard
+    faceUpComputerCard = None
+#   4.1.3) Create a variable for winner
+    winner = None
+#	4.2) Get a new Shuffled deck from the random import.
+    random.shuffle(deck)
+    while len(deck) <= 26:
+        player_cards.append(shuffled_deck)
+        print(player_cards)
+    computer_cards.append(shuffled_deck)
+    print(player_cards)
