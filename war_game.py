@@ -10,29 +10,8 @@ ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
   
-# 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
-# 3.3) If Player and Computer turn up the same card, then invoke a war() function
-#  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
- 
-    # use a for loop to iterate through each string such as "A of Spades" into a master_deck list
-    
-def war(deck):
-    # splice 1 to 26 of master_deck list into player_cards
-    player_cards = deck[:len(deck)/2]
-    # splice remaining 27 to 52 to the list computer_cards
-    computer_cards = deck[len(deck)/2]
-    print(player_cards)
-    print(computer_cards)
-        # while player_cards and computer_cards:
-            
 
-
-
-    # The player with the higher card takes all six cards
-    
-    # If player turns up the same again, repeat the war() function with one card face up and one card face down.
-
-# 3.3) The value of cards
+# 3.1) The value of cards
 #		3.3.1) J counts as 11 points
 #       3.3.2) Q counts as 12 points
 #       3.3.3) K counts as 13 points
@@ -40,7 +19,7 @@ def war(deck):
 #       3.3.5) Count cards from 2-10 ‘as-is’.
 #       3.1.2.3) Count the K, Q, J cards as 10 points.
 
-# 3.4) The winner is the player who wins all of the cards
+# 3.2) The winner is the player who wins all of the cards
 
 
 # /*----- app's state (variables) -----*/
@@ -51,9 +30,9 @@ def war(deck):
 
 # 2.1) 
 #	2.2) Create an empty array of player_cards	
-player_cards = []
+# player_cards = []
 # 2.3) Create an empty array of computer_cards 
-computer_cards = []
+# computer_cards = []
 # 2.4) Each player turns one card face up and one card face down
 warPlayerDeck = []
 warComputerDeck = []
@@ -95,6 +74,30 @@ class Deck:
     def show(self):
         for c in self.cards:
             c.show()
+    
+        # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
+    def deal_war(self):
+#  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
+    # splice 1 to 26 of master_deck list into player_cards
+        for x in self.cards:
+            player_cards = x[:len(x)/2]
+    # splice remaining 27 to 52 to the list computer_cards
+            computer_cards = x[len(x)/2]
+        print(player_cards)
+        print(computer_cards)
+ 
+    
+# 3.3) If Player and Computer turn up the same card, then invoke a go_to_war() function
+
+        # while player_cards and computer_cards:
+            
+
+
+
+    # The player with the higher card takes all six cards
+    
+    # If player turns up the same again, repeat the war() function with one card face up and one card face down.
+
 
 
 #   4.3) Get a new Shuffled deck from the random import
@@ -125,17 +128,11 @@ class Player:
         for card in self.hand:
             card.show()
 
-#   4.1.4) 
-#   4.1.5) 
-#   4.1.6)
-    
-  
-
 #   4.3) Create a new deck and then shuffle and show it
 
 deck = Deck()
 deck.shuffle()
-deck.show()
+deck.deal_war()
 
 chako = Player("Chako")
 chako.draw(deck)
