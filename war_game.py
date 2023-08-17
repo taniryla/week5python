@@ -12,8 +12,22 @@ ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A
   
 # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 # 3.3) If Player and Computer turn up the same card, then invoke a war() function
-def war():
-    pass
+#  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
+ 
+    # use a for loop to iterate through each string such as "A of Spades" into a master_deck list
+    
+def war(deck):
+    # splice 1 to 26 of master_deck list into player_cards
+    player_cards = deck[:len(deck)/2]
+    # splice remaining 27 to 52 to the list computer_cards
+    computer_cards = deck[len(deck)/2]
+    print(player_cards)
+    print(computer_cards)
+        # while player_cards and computer_cards:
+            
+
+
+
     # The player with the higher card takes all six cards
     
     # If player turns up the same again, repeat the war() function with one card face up and one card face down.
@@ -56,39 +70,7 @@ def start_game():
     faceUpComputerCard = None
 #   4.1.3) Create a variable for winner
     winner = None
-#   4.1.4) Create a new deck and then shuffle and show it
-    deck = Deck()
-    deck.shuffle()
-    deck.show()
-#   4.1.5) Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
-#   4.1.6) Pull out the card on the deck for the Player
- 
-    # use a for loop to iterate through each string such as "A of Spades" into a master_deck list
-    for x in deck:
-        master_deck = []
-        master_deck.append(x)
-        print(master_deck)
-    # splice 1 to 26 of master_deck list into player_cards
-
-
-    # splice remaining 27 to 52 to the list computer_cards
-
-    """
-    while deck != None:
-        faceUpPlayerCard = deck.draw_card()
-        player_cards.append(f"{faceUpPlayerCard}")
-        print("Player card...")
-        faceUpPlayerCard.show()
-        faceUpComputerCard = deck.draw_card()
-        computer_cards.append(f"{faceUpComputerCard}")
-        print("Computer card...")
-        faceUpComputerCard.show()
-        print(f"Player cards... {player_cards}")
-        print(f"Computer cards... {computer_cards}")
-    """
-  
-
-
+#   
 
 #	4.2) Build a class for card and deck 
 
@@ -128,5 +110,36 @@ class Deck:
     def draw_card(self):
         return self.cards.pop() # will remove the last card from the top of the deck and return that card
 
+#   4.5) Create a Player Class
+
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hand = []
+    
+    def draw(self, deck):
+        self.hand.append(deck.draw_card())
+        return self
+    
+    def show_hand(self):
+        for card in self.hand:
+            card.show()
+
+#   4.1.4) 
+#   4.1.5) 
+#   4.1.6)
+    
+  
+
+#   4.3) Create a new deck and then shuffle and show it
+
+deck = Deck()
+deck.shuffle()
+deck.show()
+
+chako = Player("Chako")
+chako.draw(deck)
+print("Player's hand...")
+chako.show_hand()
 
 start_game()
