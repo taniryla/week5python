@@ -62,19 +62,31 @@ def start_game():
     deck.show()
 #   4.1.5) Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
 #   4.1.6) Pull out the card on the deck for the Player
+ 
+    # use a for loop to iterate through each string such as "A of Spades" into a master_deck list
+    for x in deck:
+        master_deck = []
+        master_deck.append(x)
+        print(master_deck)
+    # splice 1 to 26 of master_deck list into player_cards
+
+
+    # splice remaining 27 to 52 to the list computer_cards
+
     """
     while deck != None:
         faceUpPlayerCard = deck.draw_card()
-        player_cards.append(faceUpPlayerCard)
+        player_cards.append(f"{faceUpPlayerCard}")
         print("Player card...")
         faceUpPlayerCard.show()
         faceUpComputerCard = deck.draw_card()
-        computer_cards.append(faceUpComputerCard)
+        computer_cards.append(f"{faceUpComputerCard}")
         print("Computer card...")
         faceUpComputerCard.show()
         print(f"Player cards... {player_cards}")
         print(f"Computer cards... {computer_cards}")
     """
+  
 
 
 
