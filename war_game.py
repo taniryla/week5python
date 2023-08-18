@@ -10,9 +10,6 @@ ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13',
 # /*----- app's state (variables) -----*/
 	
 # 2) Define required variables used to track the state of the game:
-
-
-
 # 2.1) 
 #	2.2) Create an empty array of player_cards	
 player_cards = []
@@ -24,8 +21,6 @@ warComputerDeck = []
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
-  
-
 # 3.1) The value of cards
 #		3.3.1) J counts as 11 points
 #       3.3.2) Q counts as 12 points
@@ -34,23 +29,17 @@ warComputerDeck = []
 #       3.3.5) Count cards from 2-10 ‘as-is’.
 #       3.1.2.3) Count the K, Q, J cards as 10 points.
 
-# 3.2) The winner is the player who wins all of the cards
-
-
-
-
 # /*----- functions -----*/
 
 # 4) Upon loading the app should:
-def start_game():
+
 #	4.1) Initialize the state variables:
 #   4.1.1) Create a variable of faceUpPlayerCard 
-    faceUpPlayerCard = None
+faceUpPlayerCard = None
 #   4.1.2) Create a variable of faceUpComputerCard
-    faceUpComputerCard = None
+faceUpComputerCard = None
 #   4.1.3) Create a variable for winner
-    winner = None
-#   
+winner = None
 
 #	4.2) Build a list for deck 
 
@@ -64,16 +53,14 @@ def build():
 
 build()
     
-
 #       4.3) Shuffle the deck
 
 random.shuffle(deck)
-# print(deck)
 
         # 4.4) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 def deal_deck():
-#  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
-    # splice 1 to 26 of master_deck list into player_cards
+#  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. 
+    # splice 1 to 26 of deck list into player_cards
     player_cards.append(deck[0:int(len(deck)/2)])
     print(f"Player cards... {player_cards}")
     # splice remaining 27 to 52 to the list computer_cards
@@ -85,15 +72,32 @@ deal_deck()
 
 #   4.5) Each player draws a card
 
+faceUpPlayerCard = player_cards[0].pop() # the top item is removed from the player_cards list
+player_face_value = faceUpPlayerCard[1]
+print(f"Faceup Player Card Value... {player_face_value}")
+print(player_cards)
+faceUpComputerCard = computer_cards[0].pop()
+computer_face_value = faceUpComputerCard[1]
+print(f"Faceup Computer Card Value... {computer_face_value}")
+
+
 #   4.6) Compare Player and Computer cards up to see who wins
 
+if player_face_value > computer_face_value: # both face up cards by player and computer go to player_cards list
+    player_cards.append(faceUpPlayerCard)
+    player_cards.append(faceUpComputerCard)
+elif computer_face_value > player_face_value: # both face up cards by player and computer go to computer_cards list
+    computer_cards.append(faceUpPlayerCard)
+    computer_cards.append(faceUpComputerCard)
+else:
+    go_to_war()
+
 #   4.7) If Player and Computer turn up the same card, then invoke a go_to_war() function
+def go_to_war():
+    
 
         # while player_cards and computer_cards:
             
-
-
-
     # The player with the higher card takes all six cards
     
     # If player turns up the same again, repeat the war() function with one card face up and one card face down.
@@ -104,6 +108,3 @@ deal_deck()
 # 
 #   4.9) Check if ekther player_cards or computer_cards is empty and if either are empty determine winner
 
-
-
-start_game()
