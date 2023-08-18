@@ -4,8 +4,23 @@ import random
 
 # 1) Define required constants:
 
-suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts'];
-ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
+suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts']
+ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14']
+
+# /*----- app's state (variables) -----*/
+	
+# 2) Define required variables used to track the state of the game:
+
+
+
+# 2.1) 
+#	2.2) Create an empty array of player_cards	
+player_cards = []
+# 2.3) Create an empty array of computer_cards 
+computer_cards = []
+# 2.4) Each player turns one card face up and one card face down
+warPlayerDeck = []
+warComputerDeck = []
 
 # /*----- cached element references -----*/
 # 3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant:
@@ -22,20 +37,6 @@ ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A
 # 3.2) The winner is the player who wins all of the cards
 
 
-# /*----- app's state (variables) -----*/
-	
-# 2) Define required variables used to track the state of the game:
-
-
-
-# 2.1) 
-#	2.2) Create an empty array of player_cards	
-# player_cards = []
-# 2.3) Create an empty array of computer_cards 
-# computer_cards = []
-# 2.4) Each player turns one card face up and one card face down
-warPlayerDeck = []
-warComputerDeck = []
 
 
 # /*----- functions -----*/
@@ -51,40 +52,35 @@ def start_game():
     winner = None
 #   
 
-#	4.2) Build a class for card and deck 
+#	4.2) Build a list for deck 
 
-class Card:
-    def __init__(self, suit, val):
-        self.suit = suit
-        self.value = val
-    
-    def show(self):
-        print("{} of {}".format(self.value, self.suit))
+deck = []
 
-class Deck:
-    def __init__(self):
-        self.cards = []
-        self.build()
+
+def build():
+    for s in suits:
+        for r in ranks:
+            deck.append((s, r))
+
+build()
+print(deck)
     
-    def build(self):
-        for s in suits:
-            for r in ranks:
-                self.cards.append(Card(s, r))
-    
-    def show(self):
-        for c in self.cards:
-            c.show()
-    
+
+#       4.3) Shuffle the deck
+
+random.shuffle(deck)
+
         # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
-    def deal_war(self):
+def deal_war():
 #  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
     # splice 1 to 26 of master_deck list into player_cards
-        for x in self.cards:
-            player_cards = x[:len(x)/2]
+    for x in range(0, int(len(self.cards)/2)):
+        player_cards.append()
+        # print(player_cards)
     # splice remaining 27 to 52 to the list computer_cards
-            computer_cards = x[len(x)/2]
-        print(player_cards)
-        print(computer_cards)
+    for y in range(int(len(self.cards)/2) + 1, 52):
+        computer_cards.append(y)
+        # print(computer_cards)
  
     
 # 3.3) If Player and Computer turn up the same card, then invoke a go_to_war() function
@@ -102,41 +98,17 @@ class Deck:
 
 #   4.3) Get a new Shuffled deck from the random import
     
-    def shuffle(self):
-        # when we run the loop, we want values 51-1 (length of array minus)
-        for i in range(len(self.cards) - 1, 0, -1):
-            # create a random number from 0 to i (which is left of our current position as we're going right to left)
-            ran = random.randint(0, i)
-            self.cards[i], self.cards[ran] = self.cards[ran], self.cards[i]
 
-#   4.4) Create a Draw Card method
-    def draw_card(self):
-        return self.cards.pop() # will remove the last card from the top of the deck and return that card
+#   4.4) Create a Draw Card function
+def draw_card():
+    return deck.pop() # will remove the last card from the top of the deck and return that card
 
-#   4.5) Create a Player Class
 
-class Player:
-    def __init__(self, name):
-        self.name = name
-        self.hand = []
-    
-    def draw(self, deck):
-        self.hand.append(deck.draw_card())
-        return self
-    
-    def show_hand(self):
-        for card in self.hand:
-            card.show()
 
 #   4.3) Create a new deck and then shuffle and show it
 
-deck = Deck()
-deck.shuffle()
-deck.deal_war()
 
-chako = Player("Chako")
-chako.draw(deck)
-print("Player's hand...")
-chako.show_hand()
+
+
 
 start_game()
