@@ -84,23 +84,31 @@ print(f"Faceup Computer Card Value... {computer_face_value}")
 #   4.6) Compare Player and Computer cards up to see who wins
 
 if player_face_value > computer_face_value: # both face up cards by player and computer go to player_cards list
-    player_cards.append(faceUpPlayerCard)
-    player_cards.append(faceUpComputerCard)
+    player_cards.insert(0,faceUpPlayerCard)
+    player_cards.insert(1, faceUpComputerCard)
+    print(f"Player shows the {faceUpPlayerCard[1]} of {faceUpPlayerCard[0]} and computer shows the {faceUpComputerCard[1]} of {faceUpComputerCard[0]}. Ace is 14, King is 13, Queen is 12, and Jack is 11. Player wins!")
+    faceUpPlayerCard = None
+    faceUpComputerCard = None
 elif computer_face_value > player_face_value: # both face up cards by player and computer go to computer_cards list
-    computer_cards.append(faceUpPlayerCard)
-    computer_cards.append(faceUpComputerCard)
+    computer_cards.insert(0, faceUpPlayerCard)
+    computer_cards.insert(1, faceUpComputerCard)
+    print(f"Player shows the {faceUpPlayerCard[1]} of {faceUpPlayerCard[0]} and computer shows the {faceUpComputerCard[1]} of {faceUpComputerCard[0]}. Ace is 14, King is 13, Queen is 12, and Jack is 11. Computer wins!")
+    faceUpPlayerCard = None
+    faceUpComputerCard = None
 else:
     go_to_war()
 
 #   4.7) If Player and Computer turn up the same card, then invoke a go_to_war() function
 def go_to_war():
-    
+    pass
 
-        # while player_cards and computer_cards:
-            
-    # The player with the higher card takes all six cards
     
-    # If player turns up the same again, repeat the war() function with one card face up and one card face down.
+            
+    # if tie, three cards face down and then card face-up, winner takes all 10 cards
+    
+    # If player and computer, repeat the go_to_war() function with one card face up and one card face down.
+
+    # if player or computer doesn't have 3 cards to put face-down, then they lose the war
 
 
 
