@@ -70,7 +70,7 @@ print(deck)
 
 random.shuffle(deck)
 
-        # 3.2) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
+        # 4.4) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 def deal_war():
 #  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
     # splice 1 to 26 of master_deck list into player_cards
@@ -82,8 +82,11 @@ def deal_war():
         computer_cards.append(y)
         # print(computer_cards)
  
-    
-# 3.3) If Player and Computer turn up the same card, then invoke a go_to_war() function
+#   4.5) Each player draws a card
+
+#   4.6) Compare Player and Computer cards up to see who wins
+
+#   4.7) If Player and Computer turn up the same card, then invoke a go_to_war() function
 
         # while player_cards and computer_cards:
             
@@ -96,18 +99,9 @@ def deal_war():
 
 
 
-#   4.3) Get a new Shuffled deck from the random import
-    
-
-#   4.4) Create a Draw Card function
-def draw_card():
-    return deck.pop() # will remove the last card from the top of the deck and return that card
-
-
-
-#   4.3) Create a new deck and then shuffle and show it
-
-
+#   4.8) Add J, Q, K and A back into the 11, 12, 13 and 14 values
+# 
+#   4.9) Check if ekther player_cards or computer_cards is empty and if either are empty determine winner
 
 
 
