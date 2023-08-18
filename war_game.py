@@ -63,25 +63,26 @@ def build():
             deck.append((s, r))
 
 build()
-print(deck)
     
 
 #       4.3) Shuffle the deck
 
 random.shuffle(deck)
+# print(deck)
 
         # 4.4) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
-def deal_war():
+def deal_deck():
 #  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. FIX CODE.
     # splice 1 to 26 of master_deck list into player_cards
-    for x in range(0, int(len(self.cards)/2)):
-        player_cards.append()
-        # print(player_cards)
+    player_cards.append(deck[0:int(len(deck)/2)])
+    print(f"Player cards... {player_cards}")
     # splice remaining 27 to 52 to the list computer_cards
-    for y in range(int(len(self.cards)/2) + 1, 52):
-        computer_cards.append(y)
-        # print(computer_cards)
- 
+    computer_cards.append(deck[(int(len(deck)/2)+1):52])
+    print(f"Computer cards... {computer_cards}")
+    return player_cards and computer_cards
+
+deal_deck()
+
 #   4.5) Each player draws a card
 
 #   4.6) Compare Player and Computer cards up to see who wins
