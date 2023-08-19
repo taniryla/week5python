@@ -56,8 +56,8 @@ def deal_deck(): #  Player_cards receives 26 random cards out of a 52 card deck.
 def draw():
     faceUpPlayerCard = player_cards.pop() # the top item is removed from the player_cards list
     faceUpComputerCard = computer_cards.pop()
-    determine_winner(faceUpPlayerCard, faceUpComputerCard)
-#   3.5.1) TODO1: Create a def war_draw()
+    determine_winner(faceUpPlayerCard, faceUpComputerCard, warPlayerDeck, warComputerDeck)
+
 #   3.6) If Player and Computer turn up the same card, then invoke a go_to_war() function
 def go_to_war():        
     # if tie, three cards face down and then card face-up, winner takes all 10 cards
@@ -68,31 +68,42 @@ def go_to_war():
     warComputerDeck.append(computer_cards[1])
     warComputerDeck.append(computer_cards[2])
     draw()   # If player and computer tie, repeat the go_to_war() function with one card face up and one card face down.
-    print(f"Hidden Cards... {warPlayerDeck} {warComputerDeck}")
-# TODO2: if player or computer doesn't have 3 cards to put face-down, then they lose the war
+
+
+# TODO1: if player or computer doesn't have 3 cards to put face-down, then they lose the war
 
 #   3.7) Helper function in a dictionary
 def royal_help(arg):
     dict = {14: "A", 13: "K", 12: "Q", 11: "J"}
-    if arg in dict:
+    if arg in dict.keys():
         return dict[arg]
     else:
         return arg
     
 #   3.8) Compare Player and Computer cards up to see who wins
-def determine_winner(l, m):
+def determine_winner(l, m, n, o):
     if int(l[1]) > int(m[1]): # both face up cards by player and computer go to player_cards list
         player_cards.insert(0, l)
         player_cards.insert(1, m)
-#   TODO3: Show number of cards for player and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
+        if n != None:
+            player_cards.insert(2, n)
+            player_cards.insert(3, o)
+            n = []
+            o = []
+#   TODO2: Show number of cards for player and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
         print(f"Player shows the {royal_help(int(l[1]))} of {l[0]} and computer shows the {royal_help(int(m[1]))} of {m[0]}. Player wins!")
-        draw()
+        # menu()
     elif int(l[1]) < int(m[1]): # both face up cards by player and computer go to computer_cards list
         computer_cards.insert(0, l)
         computer_cards.insert(1, m)
-#   TODO4: Show number of cards for computer and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
+        if o != None:
+            computer_cards.insert(2, n)
+            computer_cards.insert(3, o)
+            n = []
+            o = []
+#   TODO3: Show number of cards for computer and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
         print(f"Player shows the {l[1]} of {m[0]} and computer shows the {m[1]} of {l[0]}. Computer wins!")
-        draw()
+        # menu()
     elif int(l[1]) == int(m[1]):
         go_to_war()
 
