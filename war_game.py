@@ -32,6 +32,7 @@ def init():
     shuffle_deck()
     menu()
     player_cards, computer_cards = deal_deck() # converting tuple back into a list, now writes to global
+    draw()
 
 #	3.2) Build a list for deck 
 deck = []
@@ -119,7 +120,7 @@ def determine_winner(l, m, n, o):
             n = []
             o = []
 #   TODO1: Show number of cards for player and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
-        print(f"Player shows the {royal_help(int(l[1]))} of {l[0]} and computer shows the {royal_help(int(m[1]))} of {m[0]}. Player wins!")
+        print(f"Player shows the {royal_help(int(l[1]))} of {l[0]} and Computer shows the {royal_help(int(m[1]))} of {m[0]}. Player wins!")
         menu()
     elif int(l[1]) < int(m[1]): # both face up cards by player and computer go to computer_cards list
         computer_cards.insert(0, l)
@@ -130,7 +131,7 @@ def determine_winner(l, m, n, o):
             n = []
             o = []
 #   TODO1: Show number of cards for computer and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
-        print(f"Player shows the {royal_help(int(l[1]))} of {m[0]} and computer shows the {royal_help(int(m[1]))} of {l[0]}. Computer wins!")
+        print(f"Player shows the {royal_help(int(l[1]))} of {m[0]} and Computer shows the {royal_help(int(m[1]))} of {l[0]}. Computer wins!")
         menu()
     elif int(l[1]) == int(m[1]):
         go_to_war()
