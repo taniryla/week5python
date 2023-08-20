@@ -33,9 +33,9 @@ def init():
     winner = None #   Create a variable for winner
     build()
     shuffle_deck()
-    menu()
+    menu(player_card_count, computer_card_count)
     player_cards, computer_cards = deal_deck() # converting tuple back into a list, now writes to global
-    draw()
+    draw(player_card_count, computer_card_count)
 
 #	3.2) Build a list for deck 
 deck = []
@@ -51,7 +51,7 @@ def shuffle_deck():
     random.shuffle(deck)
 
 #   3.4) Build a def menu() with 1. Play A Hand 2. Score 3. Exit Game
-def menu():
+def menu(player_card_count, computer_card_count):
     print("          === War ===          ")
     print("---------------------------------------------")
     print("| 1.    Play Next Hand                      |")
@@ -64,9 +64,9 @@ def menu():
     while True:
         option = input("Choose an option:")
         if option == "1":
-            draw()
+            draw(player_card_count, computer_card_count)
         elif option == "2":
-            card_tally()
+            card_tally(player_card_count, computer_card_count)
         else:
             print("Nice playing. Goodbye!")
             break
@@ -78,17 +78,17 @@ def deal_deck(): #  Player_cards receives 26 random cards out of a 52 card deck.
     return player_cards, computer_cards
 
 #   3.5) Each player draws a card
-def draw():
+def draw(player_card_count, computer_card_count):
     while True:
         if player_card_count != 0 or computer_card_count != 0:
-            faceUpPlayerCard = player_cards.pop() # the top item is removed from the player_cards list
-            faceUpComputerCard = computer_cards.pop()
+            faceup_player_card = player_cards.pop() # the top item is removed from the player_cards list
+            faceup_computer_card = computer_cards.pop()
             determine_winner(faceup_player_card, faceup_computer_card, war_player_deck, war_computer_deck, player_card_count, computer_card_count)
         else:
             if player_card_count == 0:
                 print("Player has no cards left. Computer has won!")
                 break
-            else:
+            elif computer_card_count == 0:
                 print("Computer has no cards left. Player has won!")
                 break
 
@@ -102,7 +102,7 @@ def go_to_war():
         war_computer_deck.append(computer_cards[0])
         war_computer_deck.append(computer_cards[1])
         war_computer_deck.append(computer_cards[2])
-        draw()   # If player and computer tie, repeat the go_to_war() function with one card face up and one card face down.if player or computer doesn't have 3 cards to put face-down, then they lose the war
+        draw(player_card_count, computer_card_count)   # If player and computer tie, repeat the go_to_war() function with one card face up and one card face down.if player or computer doesn't have 3 cards to put face-down, then they lose the war
     else:
         if len(player_cards) < 3:
             print("Player does not have enough cards. Player loses!")
@@ -118,19 +118,19 @@ def royal_help(arg):
         return arg
     
 #   3.8) Helper function to keep track of the card count for Player and Computer
-def card_tally():
+def card_tally(player_card_count, computer_card_count):
     print(f"Player cards remaining... {player_card_count}")
     print(f"Computer cards remaining... {computer_card_count}")
-    menu()
+    menu(player_card_count, computer_card_count)
 
 #   3.9) Compare Player and Computer cards up to see who wins
-def determine_winner(faceup_player_card, faceup_computer_card, war_player_deck, computer_player_deck, player_card_count, computer_card_count):
+def determine_winner(faceup_player_card, faceup_computer_card, war_player_deck, war_computer_deck, player_card_count, computer_card_count):
     if int(faceup_player_card[1]) > int(faceup_computer_card[1]): # both face up cards by player and computer go to player_cards list
         player_cards.insert(0, faceup_player_card)
         player_cards.insert(1, faceup_computer_card)
         player_card_count += 2
         computer_card_count -=2
-        if war_player_deck != None: # if went to war
+        if len(war_player_deck) != 0: # if went to war
             player_cards.insert(2, war_player_deck)
             player_cards.insert(3, war_computer_deck)
             player_card_count += 6
@@ -138,23 +138,28 @@ def determine_winner(faceup_player_card, faceup_computer_card, war_player_deck, 
             war_player_deck= []
             war_computer_deck = []
 #   Show number of cards for player and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
-        print(f"Player shows the {royal_help(int(faceup_player_card[1]))} of {faceup_player_card[0]} and Computer shows the {royal_help(int(faceup_computer_card[1]))} of {faceup_computer_card[0]}. Player wins! Player has {player_card_count} cards and Computer has {computer_card_count} cards.")
-        menu()
-    elif int(faceup_player_card[1]) < int(faceup_player_card[1]): # both face up cards by player and computer go to computer_cards list
+        else:
+            print(f"Player shows the {royal_help(int(faceup_player_card[1]))} of {faceup_player_card[0]} and Computer shows the {royal_help(int(faceup_computer_card[1]))} of {faceup_computer_card[0]}. Player wins! Player has {player_card_count} cards and Computer has {computer_card_count} cards.")
+            menu(player_card_count, computer_card_count)
+    elif int(faceup_player_card[1]) < int(faceup_computer_card[1]): # both face up cards by player and computer go to computer_cards list
         computer_cards.insert(0, faceup_player_card)
         computer_cards.insert(1, faceup_computer_card)
         computer_card_count += 2
+        print(f"Test 1... {computer_card_count}")
+        print(f"Test 2... {len(war_computer_deck)}")
         player_card_count -= 2
-        if war_computer_deck != None:
+        if len(war_computer_deck) != 0:
             computer_cards.insert(2, war_player_deck)
             computer_cards.insert(3, war_computer_deck)
             computer_card_count += 6
-            player_card_count -=6
+            print(f"Test 3... {computer_card_count}")
+            player_card_count -= 6
             war_player_deck = []
             war_computer_deck = []
-#   TODO2: Show number of cards for computer and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
-        print(f"Player shows the {royal_help(int(faceup_player_card[1]))} of {faceup_player_card[0]} and Computer shows the {royal_help(int(faceup_computer_card[1]))} of {faceup_computer_card[0]}. Computer wins! Player has {player_card_count} cards and Computer has {computer_card_count} cards.")
-        menu()
+#   Show number of cards for computer and include in print below. Check if either player_cards or computer_cards is empty and if either are empty determine winner
+        else:
+            print(f"Player shows the {royal_help(int(faceup_player_card[1]))} of {faceup_player_card[0]} and Computer shows the {royal_help(int(faceup_computer_card[1]))} of {faceup_computer_card[0]}. Computer wins! Player has {player_card_count} cards and Computer has {computer_card_count} cards.")
+            menu(player_card_count, computer_card_count)
     elif int(faceup_player_card[1]) == int(faceup_computer_card[1]):
         go_to_war()
 
