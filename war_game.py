@@ -30,8 +30,8 @@ def init():
     winner = None #   Create a variable for winner
     build()
     shuffle_deck()
+    menu()
     player_cards, computer_cards = deal_deck() # converting tuple back into a list, now writes to global
-    draw()
 
 #	3.2) Build a list for deck 
 deck = []
@@ -56,6 +56,16 @@ def menu():
     print("---------------------------------------------")
     print("| 3.    Exit Game                           |")
     print("---------------------------------------------")
+
+    while True:
+        option = input("Choose an option:")
+        if option == "1":
+            draw()
+        elif option == "2":
+            score()
+        else:
+            print("Nice playing. Goodbye!")
+            break
 
 #   3.5) Player and Computer turn up one card at the same time from the top of their card stack and the player with the higher card takes both cards and puts on the bottom of their card stack
 def deal_deck(): #  Player_cards receives 26 random cards out of a 52 card deck. computer_cards receives 26 random cards. 
@@ -86,7 +96,7 @@ def go_to_war():
         else:
             print("Computer does not have enough cards. Computer loses!")
 
-#   3.7) Helper function in a dictionary
+#   3.7) Helper function in a dictionary form to replace 14 with A, 13 with K, 12 with Q and 11 withh J
 def royal_help(arg):
     dict = {14: "A", 13: "K", 12: "Q", 11: "J"}
     if arg in dict.keys():
@@ -94,7 +104,11 @@ def royal_help(arg):
     else:
         return arg
     
-#   3.8) Compare Player and Computer cards up to see who wins
+#   3.8) Helper function to keep score
+def score():
+    pass
+
+#   3.9) Compare Player and Computer cards up to see who wins
 def determine_winner(l, m, n, o):
     if int(l[1]) > int(m[1]): # both face up cards by player and computer go to player_cards list
         player_cards.insert(0, l)
